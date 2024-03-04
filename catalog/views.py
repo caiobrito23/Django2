@@ -80,7 +80,6 @@ class AuthorUpdate(UpdateView):
         post.save()
         return HttpResponseRedirect(reverse('author_list'))
 
-
 def author_delete(request, pk):
     author = get_object_or_404(Author, pk=pk)
     try:
@@ -90,6 +89,36 @@ def author_delete(request, pk):
     except:
         messages.success(request, (author.first_name + ' ' + author.last_name + ' cannot be deleted. Books exist for this author'))
     return redirect('author_list')
+
+
+class BookCreate(CreateView):
+    model = Book
+    fields = ['title', 'author', 'summary', 'isbn', 'image', 'genre']
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        return HttpResponseRedirect(reverse('book_list'))
+
+
+class BookUpdate(UpdateView):
+    model = Book
+    fields = ['title', 'author', 'summary', 'isbn', 'image', 'genre']
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.save()
+        return HttpResponseRedirect(reverse('book_list'))
+
+
+def book_delete(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    try:
+        book.delete()
+        messages.success(request, (book.title  + " has been deleted"))
+    except:
+        messages.success(request, (book.title +' cannot be deleted.' ))
+    return redirect('book_list')
 
 class AvailBooksListView(generic.ListView):
     """Generic class-based view listing all books on loan. """

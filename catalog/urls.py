@@ -14,8 +14,9 @@ urlpatterns = [
     path('book/<uuid:pk>/loan/', views.loan_book_librarian, name='loan_book_librarian'),
     path('available/', views.AvailBooksListView.as_view(), name='all_available'),
 
-    #path('add-book/', views.add_book, name='add_book'),
-    #path('update-book/<int:pk>/', views.update_book, name='update_book'),
+    path('book/create/', views.BookCreate.as_view(), name='book_create'),
+    path('book/<int:pk>/update/', views.BookUpdate.as_view(), name='book_update'),
+    path('book/<int:pk>/delete/', views.book_delete, name='book_delete'),
     #path('delete-book/<int:pk>/', views.delete_book, name='delete_book'),
 
 ]
