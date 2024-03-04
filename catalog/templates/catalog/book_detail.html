@@ -1,8 +1,13 @@
-{% extends "base.html" %}
+{% extends "catalog/base.html" %}
 {% block content %}
   <h1>Title: {{ book.title }}</h1>
+    
+   <!-- Add image display -->
+{#  {% if book.image %}#}
+{#    <img src="{{ book.image.url }}" alt="{{ book.title }} Image">#}
+{#  {% endif %} #}
 
-  <p><strong>Author:</strong> <a href="{% url 'author_detail' pk=book.author.pk %}">{{ book.author.name }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Author:</strong> <a href="{% url 'author_detail' pk=book.author.pk %}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
   <p><strong>Summary:</strong> {{ book.summary }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
   <p><strong>Language:</strong> {{ book.language }}</p>

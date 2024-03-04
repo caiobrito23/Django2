@@ -20,6 +20,7 @@ class Author(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
+    author_image = models.ImageField(upload_to='images/', null=True, blank=True)
     class Meta:
         ordering = ['last_name', 'first_name']
     def get_absolute_url(self):
@@ -36,6 +37,7 @@ class Book(models.Model):
     summary = models.TextField(max_length=1000, help_text='Enter a brief description of the book')
     isbn = models.CharField('ISBN', max_length=13, unique=True,
                             help_text='13 Character <a href="https://www.isbn-international.org / content / what - isbn">ISBN number</a>')
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 # ManyToManyField used because genre can contain many books. Books can cover many genres.
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
     def __str__(self):
